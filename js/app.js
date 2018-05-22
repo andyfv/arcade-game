@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(locationY) {
+var Enemy = function (locationY) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -14,29 +14,29 @@ var Enemy = function(locationY) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
+Enemy.prototype.update = function (dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    if(this.checkBoundary()){
+    if (this.checkBoundary()) {
         this.x += this.speed * dt;
     }
 };
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Enemy.prototype.randomSpeed = function() {
+Enemy.prototype.randomSpeed = function () {
     min = Math.ceil(100);
     max = Math.floor(400);
     this.speed = Math.floor(Math.random() * (max - min) + min);
     //this.speed = Math.floor((Math.random()*9));
 }
 
-Enemy.prototype.checkBoundary = function() {
-    if(this.x > 505){
+Enemy.prototype.checkBoundary = function () {
+    if (this.x > 505) {
         this.resetPosition();
         this.randomSpeed();
         return false;
@@ -45,11 +45,11 @@ Enemy.prototype.checkBoundary = function() {
     }
 }
 
-Enemy.prototype.resetPosition = function() {
+Enemy.prototype.resetPosition = function () {
     this.randomPosition();
 }
 
-Enemy.prototype.randomPosition = function() {
+Enemy.prototype.randomPosition = function () {
     min = Math.ceil(-500);
     max = Math.floor(-100);
     this.x = Math.floor(Math.random() * (max - min) + min);
@@ -66,9 +66,9 @@ class Player {
         this.resetPlayer();
     }
 
-    update(xShift, yShift){
+    update(xShift, yShift) {
         this.x += xShift;
-        this.y += yShift; 
+        this.y += yShift;
         console.log(this.y);
     }
 
@@ -79,12 +79,12 @@ class Player {
     handleInput(keyCode) {
         switch (keyCode) {
             case 'left':
-                if(this.checkBoundaryX(-101)) {
+                if (this.checkBoundaryX(-101)) {
                     this.update(-101, 0);
                 }
                 break;
             case 'up':
-                if(this.checkBoundaryY(-83)) {
+                if (this.checkBoundaryY(-83)) {
                     this.update(0, -83);
                 }
                 break;
@@ -94,7 +94,7 @@ class Player {
                 }
                 break;
             case 'down':
-                if(this.checkBoundaryY(83)) {
+                if (this.checkBoundaryY(83)) {
                     this.update(0, 83);
                 }
                 break;
@@ -103,15 +103,15 @@ class Player {
         }
     }
 
-    checkBoundaryX(step){
-        return ((this.x + step) >= 0 && (this.x + step) <= 404)? true: false;
+    checkBoundaryX(step) {
+        return ((this.x + step) >= 0 && (this.x + step) <= 404) ? true : false;
     }
 
-    checkBoundaryY(step){
-        return ((this.y + step) >= -10 && (this.y + step <= 405)) ? true: false;
+    checkBoundaryY(step) {
+        return ((this.y + step) >= -10 && (this.y + step <= 405)) ? true : false;
     }
-    
-    resetPlayer(){
+
+    resetPlayer() {
         this.x = 202;
         this.y = 405;
     }
@@ -126,7 +126,7 @@ class Player {
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function (e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
