@@ -6,7 +6,7 @@ var Enemy = function(locationY) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.x = -100;
-    this.y = 60 + (85 * (locationY - 1));
+    this.y = 60 + (83 * (locationY - 1));
     this.speed;
     this.randomSpeed();
     this.sprite = 'images/enemy-bug.png';
@@ -63,33 +63,58 @@ class Player {
         this.x;
         this.y;
         this.sprite = 'images/char-boy.png';
+        this.resetPlayer();
     }
 
-    render(){
+    update(xShift, yShift){
+        this.x += xShift;
+        this.y += yShift; 
+        console.log(this.y);
+    }
+
+    render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 
-    handleInput(keyCode){
-        switch(keyCode){
-            case 37:
+    handleInput(keyCode) {
+        switch (keyCode) {
+            case 'left':
+                if(this.checkBoundaryX(-101)) {
+                    this.update(-101, 0);
+                }
                 break;
-            case 38:
+            case 'up':
+                if(this.checkBoundaryY(-83)) {
+                    this.update(0, -83);
+                }
                 break;
-            case 39: 
+            case 'right':
+                if (this.checkBoundaryX(101)) {
+                    this.update(101, 0);
+                }
                 break;
-            case 40: 
+            case 'down':
+                if(this.checkBoundaryY(83)) {
+                    this.update(0, 83);
+                }
                 break;
-            default: 
+            default:
                 break;
         }
     }
 
-    checkBoundary(){
-        if (this.x > 101 && this.x < (505 - 101)) {
-
-        }
+    checkBoundaryX(step){
+        return ((this.x + step) >= 0 && (this.x + step) <= 404)? true: false;
     }
 
+    checkBoundaryY(step){
+        return ((this.y + step) >= -10 && (this.y + step <= 405)) ? true: false;
+    }
+    
+    resetPlayer(){
+        this.x = 202;
+        this.y = 405;
+    }
 
 }
 
@@ -117,3 +142,5 @@ let enemy1 = new Enemy(1);
 let enemy2 = new Enemy(2);
 let enemy3 = new Enemy(3);
 allEnemies = [enemy1, enemy2, enemy3];
+
+let player = new Player();
