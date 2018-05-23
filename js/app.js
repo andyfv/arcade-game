@@ -103,6 +103,15 @@ class Player {
         }
     }
 
+    reachedWater() {
+        if(this.y < 73) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     checkBoundaryX(step) {
         return ((this.x + step) >= 0 && (this.x + step) <= 404) ? true : false;
     }
