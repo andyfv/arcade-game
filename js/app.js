@@ -6,11 +6,14 @@ var Enemy = function (locationY) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.x = -100;
-    this.y = 60 + (83 * (locationY - 1));
+    this.y = 60 + (this.stepY * (locationY - 1));
     this.speed;
     this.randomSpeed();
     this.sprite = 'images/enemy-bug.png';
 };
+
+Enemy.prototype.stepX = 101;
+Enemy.prototype.stepY = 83;
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -19,7 +22,11 @@ Enemy.prototype.update = function (dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     if (this.checkBoundary()) {
-        this.x += this.speed * dt;
+        if (this.isColliding()) {
+            player.resetPlayer();
+        } else {
+            this.x += this.speed * dt;
+        }
     }
 };
 
@@ -55,6 +62,19 @@ Enemy.prototype.randomPosition = function () {
     this.x = Math.floor(Math.random() * (max - min) + min);
 }
 
+Enemy.prototype.isColliding = function () {
+    if (((player.x + 20 - (this.x + this.stepX) < 0) &&
+            (this.x - (player.x - 20 + this.stepX) < 0)) &&
+        (((player.y + 60) - (this.y + this.stepY) < 0) &&
+            (this.y - (player.y - 30 + this.stepY) < 0))) {
+        return true;
+    } else {
+        return false;
+    }
+
+}
+
+
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
@@ -69,7 +89,8 @@ class Player {
     update(xShift, yShift) {
         this.x += xShift;
         this.y += yShift;
-        console.log(this.y);
+        console.log("Y is :" + this.y);
+        console.log("X is :" + this.x);
     }
 
     render() {
@@ -77,25 +98,30 @@ class Player {
     }
 
     handleInput(keyCode) {
+        const stepX = 101;
+        const stepY = 83;
         switch (keyCode) {
             case 'left':
-                if (this.checkBoundaryX(-101)) {
-                    this.update(-101, 0);
+                if (this.checkBoundaryX(-stepX)) {
+                    this.update(-stepX, 0);
                 }
                 break;
             case 'up':
-                if (this.checkBoundaryY(-83)) {
-                    this.update(0, -83);
+                if (this.checkBoundaryY(-stepY)) {
+                    this.update(0, -stepY);
+                    if (this.reachedWater()) {
+                        this.resetPlayer();
+                    }
                 }
                 break;
             case 'right':
-                if (this.checkBoundaryX(101)) {
-                    this.update(101, 0);
+                if (this.checkBoundaryX(stepX)) {
+                    this.update(stepX, 0);
                 }
                 break;
             case 'down':
-                if (this.checkBoundaryY(83)) {
-                    this.update(0, 83);
+                if (this.checkBoundaryY(stepY)) {
+                    this.update(0, stepY);
                 }
                 break;
             default:
@@ -104,7 +130,7 @@ class Player {
     }
 
     reachedWater() {
-        if(this.y < 73) {
+        if (this.y < 73) {
             return true;
         } else {
             return false;
