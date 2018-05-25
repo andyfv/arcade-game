@@ -156,6 +156,13 @@ class Player {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
+let allEnemies;
+let enemy1 = new Enemy(1);
+let enemy2 = new Enemy(2);
+let enemy3 = new Enemy(3);
+allEnemies = [enemy1, enemy2, enemy3];
+
+let player = new Player();
 
 
 
@@ -171,11 +178,3 @@ document.addEventListener('keyup', function (e) {
 
     player.handleInput(allowedKeys[e.which]);
 });
-
-let allEnemies;
-let enemy1 = new Enemy(1);
-let enemy2 = new Enemy(2);
-let enemy3 = new Enemy(3);
-allEnemies = [enemy1, enemy2, enemy3];
-
-let player = new Player();
