@@ -3,9 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>Effective JavaScript: Frogger</title>
+    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <section id="stats">
+        <ul class="lives">
+            <li>
+                <i class="fa fa-heart" style="color: tomato;"></i>
+            </li>
+            <li>
+                <i class="fa fa-heart" style="color: tomato;"></i>
+            </li>
+            <li>
+                <i class="fa fa-heart" style="color: tomato;"></i>
+            </li>
+        </ul>
+        <div class="score-container">
+            <span>Score:</span>
+            <span id="score">0</span>
+        </div>
+    </section>
+    <div id="modal">
+        <div id="message">
+            <span>
+                Bummer! You've died from the vicious attacks of ladybugs!
+            </span>
+        </div>
+        <button id="restart">
+            Restart
+        </button>
+    </div>
     <script src="js/resources.js"></script>
     <script src="js/app.js"></script>
     <script src="js/engine.js"></script>

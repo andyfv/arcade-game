@@ -1,3 +1,83 @@
 body {
     text-align: center;
 }
+
+body canvas {
+    z-index: 0;
+    margin: auto;
+}
+
+#stats {
+    background-color: lightgray;
+    border-radius: 5px;
+    margin: auto;
+    width: 505px;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lives,
+.score-container {
+    display: inline-block;
+    margin-top: 10px;
+}
+
+.lives li {
+    list-style: none;
+    display: inline-block;
+}
+
+.fa-heart,
+.score-container {
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+#message {
+    background-color: lightcoral;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.4em;
+    color: ivory;
+    display: inline-block;
+    height: 100px;
+    width: 505px;
+}
+
+#message span {
+    margin-top: 10px;
+}
+
+#modal {
+    background-color: rgba(155, 155, 155, 0.548);
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    /* Change to display: flex */
+}
+
+#restart {
+    display: inline-block;
+}
+
+/* .characters { 
+    display: flex;
+    border: 3px solid white;
+    border-radius: 10px;
+    height: 85px;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+.characters li {
+    top: -60px;
+    position: relative;
+} */

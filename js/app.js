@@ -67,6 +67,7 @@ Enemy.prototype.isColliding = function () {
             (this.x - (player.x - 20 + this.stepX) < 0)) &&
         (((player.y + 60) - (this.y + this.stepY) < 0) &&
             (this.y - (player.y - 30 + this.stepY) < 0))) {
+        Stats.decreaseLives();
         return true;
     } else {
         return false;
@@ -131,6 +132,7 @@ class Player {
 
     reachedWater() {
         if (this.y < 73) {
+            Stats.increaseScore();
             return true;
         } else {
             return false;
@@ -152,6 +154,75 @@ class Player {
     }
 
 }
+
+
+let Stats = {
+    scoreElement: document.getElementById('score'),
+    livesElemenet: document.getElementsByClassName('fa-heart'),
+    lives: 3,
+    score: 0,
+    decreaseLives: function() {
+        //((lives - 1) === 0) ? gameOver(): (lives - 1);
+        if((this.lives - 1) === 0 ) {
+            gameOver();
+        } else {
+            this.lives--;
+            this.livesElemenet[this.lives].style.color = 'grey';
+        }
+    },
+
+    increaseScore: function() {
+        this.score++;
+        this.scoreElement.innerText = this.score;
+    },
+
+    resetStats: function() {
+        this.resetLives();
+        this.resetScore();
+    },
+
+    resetLives: function() {
+        this.lives = 3;
+        for (star of this.livesElemenet) {
+            star.style.color = 'tomato';
+        }
+    },
+
+    resetScore: function() {
+        this.score = 0;
+        this.scoreElement.innerText = this.score;
+    }
+};
+
+function gameOver() {
+    
+}
+// let Game = function() {
+//         charactersList = document.getElementsByClassName('characters')[0];
+//         characterArray = [
+//             'images/char-boy',
+//             'images/char-cat-girl',
+//             'images/char-horn-giel',
+//             'images/char-pink-girl',
+//             'images/char-princess-girl' 
+//         ];
+            
+//     function chooseCharacter() {
+
+//     }
+
+//     function createCharactersList() {
+//         let charsFragment = document.createDocumentFragment();
+//         for(let i = 0; i < 5; i++) {
+//             let item = document.createElement('li'),
+//                 img = document.createElement('img');
+//             img.src = characterArray[i];
+//             item.appendChild(img);
+//             charsFragment.appendChild();
+//         }
+//     }
+
+// }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
