@@ -200,32 +200,7 @@ function gameOver() {
     document.removeEventListener('keyup', arrowKeys);
     modal.style.display = 'flex';
 }
-// let Game = function() {
-//         charactersList = document.getElementsByClassName('characters')[0];
-//         characterArray = [
-//             'images/char-boy',
-//             'images/char-cat-girl',
-//             'images/char-horn-giel',
-//             'images/char-pink-girl',
-//             'images/char-princess-girl' 
-//         ];
 
-//     function chooseCharacter() {
-
-//     }
-
-//     function createCharactersList() {
-//         let charsFragment = document.createDocumentFragment();
-//         for(let i = 0; i < 5; i++) {
-//             let item = document.createElement('li'),
-//                 img = document.createElement('img');
-//             img.src = characterArray[i];
-//             item.appendChild(img);
-//             charsFragment.appendChild();
-//         }
-//     }
-
-// }
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
