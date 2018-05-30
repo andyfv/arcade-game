@@ -1,4 +1,7 @@
 // Enemies our player must avoid
+
+const modal = document.getElementById('modal');
+
 var Enemy = function (locationY) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
@@ -195,7 +198,8 @@ let Stats = {
 };
 
 function gameOver() {
-    
+    modal.style.display = 'flex';
+    removeEventListener();
 }
 // let Game = function() {
 //         charactersList = document.getElementsByClassName('characters')[0];
@@ -239,7 +243,7 @@ let player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function (e) {
+document.addEventListener('keyup', function controls(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
@@ -248,4 +252,10 @@ document.addEventListener('keyup', function (e) {
     };
 
     player.handleInput(allowedKeys[e.which]);
+});
+
+document.addEventListener('click', function(){
+    modal.style.display = 'none';
+    Stats.resetStats();
+    player.resetPlayer();
 });
