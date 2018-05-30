@@ -26,7 +26,7 @@ When you collide with the enemy one live is taken from the player current lives.
 
 ## Play online
 
-    You can play online here: [link](https://andyfv.github.io/arcade-game/)
+You can play online here: [link](https://andyfv.github.io/arcade-game/)
 
 ***
 
