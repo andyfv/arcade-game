@@ -1,6 +1,7 @@
 // Enemies our player must avoid
 
 const modal = document.getElementById('modal');
+const restartButton = document.getElementById('restart');
 
 var Enemy = function (locationY) {
     // Variables applied to each of our instances go here,
@@ -93,8 +94,6 @@ class Player {
     update(xShift, yShift) {
         this.x += xShift;
         this.y += yShift;
-        console.log("Y is :" + this.y);
-        console.log("X is :" + this.x);
     }
 
     render() {
@@ -198,8 +197,8 @@ let Stats = {
 };
 
 function gameOver() {
+    document.removeEventListener('keyup', arrowKeys);
     modal.style.display = 'flex';
-    removeEventListener();
 }
 // let Game = function() {
 //         charactersList = document.getElementsByClassName('characters')[0];
@@ -243,7 +242,10 @@ let player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function controls(e) {
+
+document.addEventListener('keyup', arrowKeys);
+
+function arrowKeys(e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
@@ -252,10 +254,13 @@ document.addEventListener('keyup', function controls(e) {
     };
 
     player.handleInput(allowedKeys[e.which]);
-});
+}
 
-document.addEventListener('click', function () {
-    modal.style.display = 'none';
+
+//Listens if the restart button is clicked
+restart.addEventListener('click', function () {
+    document.addEventListener('keyup', arrowKeys);
     Stats.resetStats();
     player.resetPlayer();
+    modal.style.display = 'none';
 });
