@@ -164,9 +164,9 @@ let Stats = {
     livesElemenet: document.getElementsByClassName('fa-heart'),
     lives: 3,
     score: 0,
-    decreaseLives: function() {
+    decreaseLives: function () {
         //((lives - 1) === 0) ? gameOver(): (lives - 1);
-        if((this.lives - 1) === 0 ) {
+        if ((this.lives - 1) === 0) {
             gameOver();
         } else {
             this.lives--;
@@ -174,24 +174,24 @@ let Stats = {
         }
     },
 
-    increaseScore: function() {
+    increaseScore: function () {
         this.score++;
         this.scoreElement.innerText = this.score;
     },
 
-    resetStats: function() {
+    resetStats: function () {
         this.resetLives();
         this.resetScore();
     },
 
-    resetLives: function() {
+    resetLives: function () {
         this.lives = 3;
         for (star of this.livesElemenet) {
             star.style.color = 'tomato';
         }
     },
 
-    resetScore: function() {
+    resetScore: function () {
         this.score = 0;
         this.scoreElement.innerText = this.score;
     }
@@ -210,7 +210,7 @@ function gameOver() {
 //             'images/char-pink-girl',
 //             'images/char-princess-girl' 
 //         ];
-            
+
 //     function chooseCharacter() {
 
 //     }
@@ -254,7 +254,7 @@ document.addEventListener('keyup', function controls(e) {
     player.handleInput(allowedKeys[e.which]);
 });
 
-document.addEventListener('click', function(){
+document.addEventListener('click', function () {
     modal.style.display = 'none';
     Stats.resetStats();
     player.resetPlayer();
