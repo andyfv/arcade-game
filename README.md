@@ -5,6 +5,7 @@
 * [About](#about)
 * [Instructions](#instructions)
 * [Play Online](#play-online)
+* [Play Offline](#play-offline)
 * [Issues](#issues)
 * [License](#license)
 
@@ -30,9 +31,20 @@ You can play online here: [link](https://andyfv.github.io/arcade-game/)
 
 ***
 
+## Play offline
+
+- Go to the game repository: [game link](https://github.com/andyfv/arcade-game)
+- Download/Clone the repository
+- Unzip the file if you have downloaded ZIP
+- Open the folder
+- Open index.html in your browser and enjoy the game!
+
+***
+
 ## Issues
 
 None
+
 ***
 
 ## License
